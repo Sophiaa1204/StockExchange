@@ -1,0 +1,199 @@
+{% extends 'base.html' %} {% block content %} {% include 'signin.html' %} {%
+include 'signup.html' %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js">
+  Chart.defaults.color = '#ffffff';
+</script>
+
+<div class="default-container DashboardV2 page-layout">
+  <div class="section-title-block">
+    <div class="section-title-content">
+      <div class="Page-title">Portfolio Analysis</div>
+      <div class="Page-description">Portfolio data within past 5 years.</div>
+    </div>
+  </div>
+  <div class="DashboardV2-content">
+    <div class="DashboardV2-cards">
+      <div class="App-card">
+        <div class="App-card-title">Overview</div>
+        <div class="App-card-divider"></div>
+        <div class="App-card-content">
+          <div class="App-card-row">
+            <div class="label">Stocks supported by Bigbucks</div>
+            <div>
+              <span class="Tooltip">AAPL, IBM, TSLA, MSFT, AAL, BABA</span>
+            </div>
+          </div>
+          <div class="App-card-row">
+            <div class="label">Total Stock Data Recoreds</div>
+            <div>
+              <span class="Tooltip">5,048</span>
+            </div>
+          </div>
+          <div class="App-card-row">
+            <div class="label">Sharpe Ratio</div>
+            <div>
+              <span class="Tooltip nowrap" id="sharpeRatio">.......</span>
+            </div>
+          </div>
+          <div class="App-card-row">
+            <div class="label">Account Balance</div>
+            <div>
+              <span class="Tooltip nowrap" id="accountBalance">....</span>
+            </div>
+          </div>
+          <div class="App-card-row">
+            <div class="label">User Assets</div>
+            <div>
+              <span class="Tooltip nowrap" id="accountAssets">....</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="App-card">
+        <div class="App-card-title">Efficient Frontier</div>
+        <div class="App-card-divider"></div>
+        <div class="App-card-content">
+          <canvas id="efficientFrontier"></canvas>
+          <p
+            id="efficientFrontierErrorMsg"
+            class="error"
+            style="display: none"
+          ></p>
+          <script src="{{ url_for('static', filename='efficientFrontier.js') }}"></script>
+        </div>
+      </div>
+    </div>
+    <div class="token-table-wrapper App-card" style="margin-top: 15px">
+      <div class="App-card-title">Stock Portfolio</div>
+      <div class="App-card-divider"></div>
+      <table class="token-table">
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Filled Price</th>
+            <th>Shares Hold</th>
+          </tr>
+        </thead>
+        <tbody id="stock-portfolio-table-body"></tbody>
+      </table>
+    </div>
+    <div class="Tab-title-section">
+      <div class="Page-title">Stocks</div>
+
+      <span class="chart-token-selector--current"
+        ><input
+          placeholder="AAPL"
+          class="w-24"
+          id="dashboardStockInput"
+          value="AAPL"
+          type="string"
+      /></span>
+      <button id="dashboardStockInputSelector">
+        <img
+          class="btn-icon"
+          src="{{ url_for('static',
+                            filename='assets/refresh.svg') }}"
+          alt="Refrsh"
+          style="display: inline-block; width: 25px"
+        />
+      </button>
+
+      <div class="Page-description">Stock and index information.</div>
+    </div>
+    <div class="DashboardV2-cards">
+      <div class="App-card">
+        <div class="App-card-title">Stock Price by Time</div>
+        <div class="App-card-divider"></div>
+        <div class="App-card-content">
+          <canvas id="stockPriceTimeSeries"></canvas>
+          <p
+            id="stockPriceTimeSeriesErrorMsg"
+            class="error"
+            style="display: none"
+          ></p>
+          <script src="{{ url_for('static', filename='stockPriceTimeSeries.js') }}"></script>
+        </div>
+      </div>
+      <div class="App-card">
+        <div class="App-card-title">Daily Simple Return</div>
+        <div class="App-card-divider"></div>
+        <div class="App-card-content">
+          <canvas id="dailySimpleReturn"></canvas>
+          <p
+            id="dailySimpleReturnErrorMsg"
+            class="error"
+            style="display: none"
+          ></p>
+          <script src="{{ url_for('static', filename='dailySimpleReturn.js') }}"></script>
+        </div>
+      </div>
+      <div class="App-card">
+        <div class="App-card-title">Daily Return</div>
+        <div class="App-card-divider"></div>
+        <div class="App-card-content">
+          <canvas id="dailyReturnHist"></canvas>
+          <p
+            id="dailyReturnHistErrorMsg"
+            class="error"
+            style="display: none"
+          ></p>
+          <script src="{{ url_for('static', filename='dailyReturnHist.js') }}"></script>
+        </div>
+      </div>
+      <div class="App-card">
+        <div class="App-card-title">Day 0 vs Day -1 Simple Return</div>
+        <div class="App-card-divider"></div>
+        <div class="App-card-content">
+          <canvas id="dayComparisonSimpleReturn"></canvas>
+          <p
+            id="dayComparisonSimpleReturnErrorMsg"
+            class="error"
+            style="display: none"
+          ></p>
+          <script src="{{ url_for('static', filename='dayComparisonSimpleReturn.js') }}"></script>
+        </div>
+      </div>
+      <div class="App-card">
+        <div class="App-card-title">Stock vs Index</div>
+        <div class="App-card-divider"></div>
+        <div class="App-card-content">
+          <canvas id="stockIndexCompScatter"></canvas>
+          <p
+            id="stockIndexCompScatterErrorMsg"
+            class="error"
+            style="display: none"
+          ></p>
+          <script src="{{ url_for('static', filename='stockIndexCompScatter.js') }}"></script>
+        </div>
+      </div>
+      <div class="App-card">
+        <div class="App-card-title">Stock vs Index Return</div>
+        <div class="App-card-divider"></div>
+        <div class="App-card-content">
+          <canvas id="stockIndexCompLine"></canvas>
+          <p
+            id="stockIndexCompLineErrorMsg"
+            class="error"
+            style="display: none"
+          ></p>
+          <script src="{{ url_for('static', filename='stockIndexCompLine.js') }}"></script>
+        </div>
+      </div>
+      <div class="App-card">
+        <div class="App-card-title">Stock vs Index Price</div>
+        <div class="App-card-divider"></div>
+        <div class="App-card-content">
+          <canvas id="stockIndexCompLinePrice"></canvas>
+          <p
+            id="stockIndexCompLinePriceErrorMsg"
+            class="error"
+            style="display: none"
+          ></p>
+          <script src="{{ url_for('static', filename='stockIndexCompLinePrice.js') }}"></script>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</div>
+{% endblock %}

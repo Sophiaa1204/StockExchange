@@ -1,0 +1,67 @@
+<div
+  class="relative z-10"
+  aria-labelledby="modal-title"
+  role="dialog"
+  aria-modal="false"
+  id="sign_in_modal"
+  style="display: none"
+>
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+  <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div
+      class="flex min-h-full items-end justify-center p-4 sm:items-center sm:p-0"
+    >
+      <div
+        class="Exchange-swap-box-inner App-box-highlight"
+        style="min-width: 400px"
+      >
+        <div class="Tab inline Exchange-swap-order-type-tabs">
+          <div class="Tab-option muted active">Sign In</div>
+        </div>
+        <div class="Exchange-swap-section">
+          <div class="Exchange-swap-section-top">
+            <div class="muted">Username</div>
+          </div>
+          <div class="Exchange-swap-section-bottom">
+            <div class="Exchange-swap-input-container">
+              <input
+                type="string"
+                id="username_signin"
+                placeholder="Alex"
+                class="Exchange-swap-input"
+                value=""
+                data-listener-added_e7b9c161="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="Exchange-swap-section">
+          <div class="Exchange-swap-section-top">
+            <div class="muted">Password</div>
+          </div>
+          <div class="Exchange-swap-section-bottom">
+            <div class="Exchange-swap-input-container">
+              <input
+                type="password"
+                id="password_signin"
+                min="0"
+                placeholder="Password"
+                class="Exchange-swap-input"
+                value=""
+                data-listener-added_e7b9c161="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="Exchange-swap-button-container">
+          <button class="button primary-action w-100" id="signin-button">
+            Sign In
+          </button>
+        </div>
+        <p id="errorMsg"></p>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='signin.js') }}"></script>

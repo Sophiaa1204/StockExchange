@@ -1,0 +1,136 @@
+<div
+  class="relative z-10"
+  aria-labelledby="modal-title"
+  role="dialog"
+  aria-modal="true"
+  style="display: none"
+  id="sign_up_modal"
+>
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+  <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div
+      class="flex min-h-full items-end justify-center p-4 sm:items-center sm:p-0"
+    >
+      <div
+        class="Exchange-swap-box-inner App-box-highlight"
+        style="min-width: 400px"
+      >
+        <div class="Tab inline Exchange-swap-order-type-tabs">
+          <div class="Tab-option muted active">Sign Up</div>
+        </div>
+        <div class="Exchange-swap-section">
+          <div class="Exchange-swap-section-top">
+            <div class="muted">Username</div>
+          </div>
+          <div class="Exchange-swap-section-bottom">
+            <div class="Exchange-swap-input-container">
+              <input
+                type="string"
+                id="username_signup"
+                placeholder="Alex"
+                class="Exchange-swap-input"
+                value=""
+                data-listener-added_e7b9c161="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="Exchange-swap-section">
+          <div class="Exchange-swap-section-top">
+            <div class="muted">Password</div>
+          </div>
+          <div class="Exchange-swap-section-bottom">
+            <div class="Exchange-swap-input-container">
+              <input
+                type="password"
+                id="password_signup"
+                min="0"
+                placeholder="Password"
+                class="Exchange-swap-input"
+                value=""
+                data-listener-added_e7b9c161="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="Exchange-swap-section">
+          <div class="Exchange-swap-section-top">
+            <div class="muted">Email</div>
+          </div>
+          <div class="Exchange-swap-section-bottom">
+            <div class="Exchange-swap-input-container">
+              <input
+                type="string"
+                id="email_signup"
+                placeholder="alex@gmail.com"
+                class="Exchange-swap-input"
+                value=""
+                data-listener-added_e7b9c161="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="Exchange-swap-section">
+          <div class="Exchange-swap-section-top">
+            <div class="muted">Phone Number</div>
+          </div>
+          <div class="Exchange-swap-section-bottom">
+            <div class="Exchange-swap-input-container">
+              <input
+                type="number"
+                id="phone_number_signup"
+                placeholder="4152904938"
+                class="Exchange-swap-input"
+                value=""
+                data-listener-added_e7b9c161="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="Exchange-swap-section">
+          <div class="Exchange-swap-section-top">
+            <div class="muted">First Name</div>
+          </div>
+          <div class="Exchange-swap-section-bottom">
+            <div class="Exchange-swap-input-container">
+              <input
+                type="string"
+                id="first_name_signup"
+                min="0"
+                placeholder="Alex"
+                class="Exchange-swap-input"
+                value=""
+                data-listener-added_e7b9c161="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="Exchange-swap-section">
+          <div class="Exchange-swap-section-top">
+            <div class="muted">Last Name</div>
+          </div>
+          <div class="Exchange-swap-section-bottom">
+            <div class="Exchange-swap-input-container">
+              <input
+                type="string"
+                id="last_name_signup"
+                placeholder="Smith"
+                class="Exchange-swap-input"
+                value=""
+                data-listener-added_e7b9c161="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="Exchange-swap-button-container">
+          <button class="button primary-action w-100" id="signup-button">
+            Sign Up
+          </button>
+        </div>
+        <p id="signUpErrorMsg"></p>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='signup.js') }}"></script>

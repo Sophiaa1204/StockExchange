@@ -1,0 +1,55 @@
+<header>
+  <!-- Header Big start -->
+  <script>
+    function redirectToHome() {
+      window.location.href = "/";
+    }
+  </script>
+  <div class="App-header large">
+    <div class="App-header-container-left">
+      <div class="App-header-links">
+        <div class="App-header-link-container">
+          <a class="" href="/dashboard">Dashboard</a>
+        </div>
+        <div class="App-header-link-container">
+          <a href="https://gitlab.oit.duke.edu/hd127/fintech512-bigbucks/-/tree/main" class="link-underline"
+            target="_blank" rel="noopener noreferrer">Docs</a>
+        </div>
+        <div class="App-header-link-container">
+          <a href="/admin" class="link-underline" target="_blank" rel="noopener noreferrer">Admin</a>
+        </div>
+      </div>
+    </div>
+    <div class="App-header-container-right">
+      <div class="App-header-user">
+        <div class="App-header-trade-link" onclick="redirectToHome()">
+          <a aria-current="page" class="default-btn active" href="#/">Trade</a>
+        </div>
+        {% if g.user %}
+
+        <div class="App-header-trade-link">
+          <a class="connect-wallet-btn" href="{{url_for('auth.logout')}}">
+            <img class="btn-icon" src={{ url_for('static', filename='assets/sign-up.svg' ) }} alt="Sign Out" />
+            <span class="btn-label">Sign Out for {{ g.user["user_name"]}}</span>
+          </a>
+        </div>
+        {% else %}
+        <div class="App-header-trade-link" id="sign_up_button">
+          <button class="connect-wallet-btn">
+            <img class="btn-icon" src={{ url_for('static', filename='assets/sign-up.svg' ) }} alt="Sign up" />
+            <span class="btn-label">Sign Up</span>
+          </button>
+        </div>
+        <div class="App-header-trade-link">
+          <button class="connect-wallet-btn" id="sign_in_button">
+            <img class="btn-icon" src={{ url_for('static', filename='assets/log-in.svg' ) }} alt="Log In" />
+            <span class="btn-label">Log In</span>
+          </button>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Big End -->
+</header>

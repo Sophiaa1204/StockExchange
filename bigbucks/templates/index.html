@@ -1,0 +1,306 @@
+{% extends 'base.html' %} {% block content %} {% include 'signin.html' %} {%
+include 'signup.html' %}
+<div class="Exchange page-layout">
+  <div class="Exchange-content">
+    <div class="Echange-left">
+      <div class="ExchangeChart tv">
+        <div class="ExchangeChart-top App-box App-box-border">
+          <div class="ExchangeChart-top-inner">
+            <div>
+              <div class="ExchangeChart-title">
+                <div
+                  id="headlessui-menu-button-1"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <div class="App-cta small transparent chart-token-selector">
+                    <span class="chart-token-selector--current"
+                      ><input
+                        placeholder="AAPL"
+                        class="w-24"
+                        id="chart-ticker-input"
+                        value="AAPL"
+                        type="string"
+                      />
+                      / USD</span
+                    >
+                    <button id="chart-ticker-selector">
+                      <img
+                        class="btn-icon"
+                        src="{{ url_for('static',
+                      filename='assets/refresh.svg') }}"
+                        alt="Refrsh"
+                        style="display: inline-block; width: 25px"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="chart-token-menu"></div>
+              </div>
+            </div>
+            <!-- Display symbol price -->
+            <div>
+              <div class="ExchangeChart-main-price">27,357.91</div>
+              <div class="ExchangeChart-info-label">$27,357.91</div>
+            </div>
+          </div>
+        </div>
+        <div class="ExchangeChart-bottom App-box App-box-border">
+          <div
+            class="TVChartContainer ExchangeChart-bottom-content"
+            style="visibility: visible"
+          >
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container" style="height: 100%">
+              <div id="tradingview_ebd97" style="height: 100%"></div>
+              <script
+                type="text/javascript"
+                src="https://s3.tradingview.com/tv.js"
+              ></script>
+              <script type="text/javascript">
+                new TradingView.widget({
+                  autosize: true,
+                  symbol: "NASDAQ:AAPL",
+                  interval: "D",
+                  timezone: "Etc/UTC",
+                  theme: "dark",
+                  style: "1",
+                  locale: "en",
+                  toolbar_bg: "#f1f3f6",
+                  enable_publishing: false,
+                  save_image: false,
+                  container_id: "tradingview_ebd97",
+                });
+              </script>
+            </div>
+            <!-- TradingView Widget END -->
+          </div>
+        </div>
+      </div>
+      <div class="Exchange-lists large">
+        <div class="Exchange-list-tab-container">
+          <div class="Tab inline Exchange-list-tabs">
+            <div class="Tab-option muted active">Trades</div>
+          </div>
+        </div>
+        <div class="PositionsList">
+          <div class="PositionEditor"></div>
+          <table class="Exchange-list large App-box">
+            <tbody>
+              <tr class="Exchange-list-header">
+                <th>Date</th>
+                <th>Assets</th>
+                <th>Direction</th>
+                <th>Filled Price</th>
+                <th>Filled Amount</th>
+                <th>Total</th>
+              </tr>
+              <tr id="nullOrder">
+                <td colspan="15">
+                  <div class="Exchange-empty-positions-list-note">
+                    No trading history
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Echange-right">
+      <div class="Exchange-swap-box">
+        <div class="Exchange-swap-box-inner App-box-highlight">
+          <div>
+            <div class="Tab block Exchange-swap-option-tabs">
+              <div class="Tab-option muted active" id="realtime-panel-button">
+                Realtime
+              </div>
+              <div class="Tab-option muted" id="history-panel-button">
+                History
+              </div>
+            </div>
+          </div>
+          <div id="realtime-section">
+            <div class="Exchange-swap-section">
+              <div class="Exchange-swap-section-top">
+                <div class="muted">Pay</div>
+              </div>
+              <div class="Exchange-swap-section-bottom">
+                <div class="Exchange-swap-input-container">
+                  <input
+                    type="number"
+                    min="0"
+                    placeholder="0.0"
+                    class="Exchange-swap-input"
+                    value=""
+                    id="symbol-a-amount"
+                  />
+                </div>
+                <div>
+                  <div class="TokenSelector">
+                    <div class="TokenSelector-box" id="symbol-a">USD</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="Exchange-swap-ball-container"
+              id="realtime-exchange-swap-ball"
+            >
+              <div class="Exchange-swap-ball">
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  class="Exchange-swap-ball-icon"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M131.3 231.1L32 330.6l99.3 99.4v-74.6h174.5v-49.7H131.3v-74.6zM480 181.4L380.7 82v74.6H206.2v49.7h174.5v74.6l99.3-99.5z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="Exchange-swap-section">
+              <div class="Exchange-swap-section-top">
+                <div class="muted">Get</div>
+              </div>
+              <div class="Exchange-swap-section-bottom">
+                <div>
+                  <input
+                    type="number"
+                    min="0"
+                    placeholder="0"
+                    class="Exchange-swap-input"
+                    value=""
+                    step="1"
+                    pattern="\d+"
+                    id="symbol-b-amount"
+                  />
+                </div>
+                <div>
+                  <div class="TokenSelector">
+                    <div class="TokenSelector-box" id="symbol-b">AAPL</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="history-section" style="display: none">
+            <div class="Exchange-swap-section">
+              <div class="Exchange-swap-section-top">
+                <div class="muted">Pay</div>
+              </div>
+              <div class="Exchange-swap-section-bottom">
+                <div class="Exchange-swap-input-container">
+                  <input
+                    type="string"
+                    min="0"
+                    placeholder="0.0"
+                    class="Exchange-swap-input"
+                    value=""
+                    id="history-symbol-a-amount"
+                  />
+                </div>
+                <div>
+                  <div class="TokenSelector">
+                    <div class="TokenSelector-box" id="history-symbol-a">
+                      USD
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="Exchange-swap-ball-container"
+              id="history-exchange-swap-ball"
+            >
+              <div class="Exchange-swap-ball">
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  class="Exchange-swap-ball-icon"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M131.3 231.1L32 330.6l99.3 99.4v-74.6h174.5v-49.7H131.3v-74.6zM480 181.4L380.7 82v74.6H206.2v49.7h174.5v74.6l99.3-99.5z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="Exchange-swap-section">
+              <div class="Exchange-swap-section-top">
+                <div class="muted">Get</div>
+              </div>
+              <div class="Exchange-swap-section-bottom">
+                <div>
+                  <input
+                    type="string"
+                    min="0"
+                    placeholder="0"
+                    class="Exchange-swap-input"
+                    value=""
+                    step="1"
+                    pattern="\d+"
+                    id="history-symbol-b-amount"
+                  />
+                </div>
+                <div>
+                  <div class="TokenSelector">
+                    <div class="TokenSelector-box" id="history-symbol-b">
+                      AAPL
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="Exchange-swap-section">
+              <div class="Exchange-swap-section-top">
+                <div class="muted" id="history-date-section-title">
+                  Trade on hisotry date
+                </div>
+              </div>
+              <div class="Exchange-swap-section-bottom">
+                <div>
+                  <input
+                    type="date"
+                    placeholder="2021-12-10"
+                    class="Exchange-swap-input"
+                    id="history-date-input"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="Exchange-swap-button-container">
+            <button class="button primary-action w-100" id="trade-button">
+              Trade
+            </button>
+          </div>
+          <p id="tradeErrorMsg"></p>
+        </div>
+      </div>
+      <div class="Exchange-swap-market-box App-box App-box-border" id="finance">
+        <iframe
+          src="https://s.tradingview.com/embed-widget/financials/?locale=en#%7B%22colorTheme%22%3A%22dark%22%2C%22isTransparent%22%3Atrue%2C%22largeChartUrl%22%3A%22%22%2C%22displayMode%22%3A%22regular%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22symbol%22%3A%22NASDAQ%3AAAPL%22%2C%22utm_source%22%3A%22%22%2C%22utm_medium%22%3A%22widget_new%22%2C%22utm_campaign%22%3A%22financials%22%2C%22page-uri%22%3A%22__NHTTP__%22%7D"
+          id="finance"
+          style="width: 100%; height: 60rem"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='index.js') }}"></script>
+<script>
+  updateTradeHistoryTable();
+  updateChartPrice();
+</script>
+
+{% endblock %}
